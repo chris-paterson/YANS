@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
+use App\Post;
 
 class PostController extends Controller
 {
@@ -41,19 +43,13 @@ class PostController extends Controller
             'postBody' => 'required',
         ]);
 
-        if ($validator->fails()) {
-            return redirect('post.create')
-                ->withErrors($validator)
-                ->withInput();
-        }
-
         $post = Post::create([
             'user_id' => Auth::user()->id,
             'title' => $request->input('postTitle'),
             'body' => $request->input('postBody'),
-        ]);   
+        ]);
 
-        $post->save();
+        return Redirect::route('post.show', ['id' => $post->id]);
     }
 
     /**
@@ -64,7 +60,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('post.show', ['post' => $post]);
     }
 
     /**
