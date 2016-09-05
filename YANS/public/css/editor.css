@@ -1,0 +1,49 @@
+.title-addon {
+  color: gray;
+  background-color: white;
+}
+
+.CodeMirror-line * {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14pt;
+  max-width: 32em;
+  line-height: 1.45;
+} 
+
+.CodeMirror .CodeMirror-code .cm-header-1 {
+  font-size: 100%;
+  line-height: 1.45;
+}
+
+.CodeMirror .CodeMirror-code .cm-header-2 {
+  font-size: 100%;
+  line-height: 1.45;
+}
+
+.CodeMirror .CodeMirror-code .cm-header-3 {
+  font-size: 100%;
+  line-height: 1.45;
+}
+
+.CodeMirror .CodeMirror-code .cm-header-4 {
+  font-size: 100%;
+  line-height: 1.45;
+}
+
+.CodeMirror .CodeMirror-code .cm-header-5 {
+  font-size: 100%;
+  line-height: 1.45;
+}
+
+.CodeMirror .CodeMirror-code .cm-header-6 {
+  font-size: 100%;
+  line-height: 1.45;
+}
+
+#inputTitle {
+  margin-bottom: 8px;
+}
+
+.CodeMirror, .CodeMirror-scroll {
+    max-height: 50vh;
+}
