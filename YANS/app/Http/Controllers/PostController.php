@@ -36,7 +36,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        echo "yeayea";
+        $this->validate($request, [
+            'postTitle' => 'required|max:255',
+            'postBody' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('post.create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $post = Post::create([
+            'user_id' => Auth::user()->id,
+            'title' => $request->input('postTitle'),
+            'body' => $request->input('postBody'),
+        ]);   
+
+        $post->save();
     }
 
     /**

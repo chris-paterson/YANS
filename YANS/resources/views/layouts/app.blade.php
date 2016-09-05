@@ -15,10 +15,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     @yield('css')
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Chivo" rel="stylesheet">
-
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -30,8 +26,10 @@
 <body>
     @include('fragments.header')
     
-    <div class="container">
-        @yield('content')
+    <div class="main">
+        <div class="container">
+            @yield('content')
+        </div>
     </div>
 
     <!-- Scripts -->

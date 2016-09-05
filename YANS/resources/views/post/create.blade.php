@@ -6,36 +6,54 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 @endsection
 
+@section('title')
+    Compose
+@endsection
+
 @section('content')
     <form class="form-horizontal" role="form" method="POST" action="{{ url('/posts') }}">
-        <div>
-            {{ csrf_field() }}
+        <h2>Compose</h2>
+        {{ csrf_field() }}
 
-            <label for="inputTitle"><h3>Title</h3></label>
-
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon title-addon" id="basic-addon1">#</span>
-              <input type="text" class="form-control" id="post-title" name="postTitle">
-            </div>
-            
-            <textarea id="editor" name="inputBody" required></textarea>
-            
-            <button class="btn btn-lg btn-default btn-block" type="submit">Submit</button>
+        <div class="input-group input-group-lg post-title-group {{ $errors->has('postTitle') ? ' has-error' : '' }}">
+          <span class="input-group-addon title-addon" id="basic-addon1">#</span>
+          <input type="text" value="{{ old('postTitle') }}" class="form-control post-title" id="post-title" name="postTitle" placeholder="Title">
         </div>
+        
+        <textarea id="editor" name="postBody" 
+            class="{{ $errors->has('postTitle') ? ' has-error' : '' }}"></textarea>
+        
+        <button class="btn btn-lg btn-default btn-block" type="submit">Submit</button>
+
     </form>
 @endsection
 
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script>
-      var simplemde = new SimpleMDE({ 
-        element: document.getElementById("editor"),
-        spellChecker: false,
-        tabSize: 4,
-        renderingConfig: {
-          singleLineBreaks: false,
-          codeSyntaxHighlighting: true,
-        },
-      })
+        var simplemde = new SimpleMDE({ 
+            element: document.getElementById("editor"),
+            toolbar: [
+                "bold", "italic", "heading", 
+                "|", 
+                "quote", "code", "unordered-list", "ordered-list",
+                "|", 
+                "link", "image", "table",
+                "|",
+                "preview",
+                "|",
+                "guide"
+
+            ],
+            spellChecker: false,
+            tabSize: 4,
+            renderingConfig: {
+              singleLineBreaks: false,
+              codeSyntaxHighlighting: true,
+            },
+        })
+
+        simplemde.value("{{ old('postBody') }}");
+
     </script>
 @endsection

@@ -1,66 +1,34 @@
-h1 {
+.main h1 {
   font-family: 'Chivo', serif;
   font-size: 32pt;
   max-width: 32em;
 }
 
-h2 {
+.main h2 {
   font-family: 'Chivo', serif;
   font-size: 28pt;
 }
 
-h3 {
+.main h3 {
   font-family: 'Chivo', serif;
   font-size: 20pt;
 }
 
-h4 {
+.main h4 {
   font-family: 'Chivo', serif;
   font-size: 20pt;
 }
 
-h5 {
+.main h5, h6 {
   font-family: 'Chivo', serif;
 }
 
-h6 {
-  font-family: 'Chivo', serif;
-}
-
-.article-title {
-  font-family: 'Chivo', serif;
-  font-size: 32pt;
-}
-
-p,
-li,
-a {
-  font-family: 'Roboto Slab', san-serif;
-  max-width: 32em;
-  line-height: 1.45;
-  font-size: 14pt;
-}
-
-a:link {
-  color: #5B00DA;
-  text-decoration: none;
-}
-
-a:visited {
-  color: #5B00DA;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #5B00DA;
-}
-
-table {
+.main table {
   font-family: 'Roboto Slab', san-serif;
   font-size: 14pt;
 }
 
-pre {
+.main pre {
   background: #ddd;
   padding: 16px;
   font-size: 14pt;
@@ -68,7 +36,7 @@ pre {
   white-space: pre-wrap;
 }
 
-blockquote {
+.main blockquote {
   border-left: 4px solid #000;
   padding-left: 8px;
 }
