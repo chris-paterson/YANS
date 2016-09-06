@@ -39,6 +39,8 @@
 .article th, .article td { padding: 16px; }
 
 .article pre {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 100;
   background: #ddd;
   padding: 16px;
   font-size: 14pt;
@@ -59,5 +61,8 @@
 .author {
   font-weight: 300;
   color: #999999;
-  margin-bottom: 64px;
+}
+
+#article-body {
+  margin-top: 64px;
 }

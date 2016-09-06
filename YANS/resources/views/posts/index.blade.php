@@ -22,7 +22,7 @@
         let $cards = $('.card-body')
 
         $cards.each(function() {
-            this.innerHTML = marked(this.textContent)
+            this.innerHTML = marked(this.textContent).substring(0, 1024)
         })
     </script>
 @endsection

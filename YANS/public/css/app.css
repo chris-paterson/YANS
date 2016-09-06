@@ -14,3 +14,11 @@
 .gray {
     color: #999999;
 }
+
+body {
+    padding-bottom: 64px;
+}
+
+button {
+    font-family: 'Roboto', serif!important;
+}

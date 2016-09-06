@@ -12,7 +12,14 @@
     <div class="article center-block">
         <h1 class="text-center">{{ $post->title }}</h1>
         <h3 class="author text-center">By {{ $post->user->name }}</h3>
-        
+
+        @if(Auth::user() == $post->user)
+            <button type="button" class="btn btn-default pull-right">
+                <i class="glyphicon glyphicon-edit"></i>
+                Edit
+            </button>
+        @endif
+
         <div id="article-body">{{ $post->body }}</div>
     </div>
 @endsection

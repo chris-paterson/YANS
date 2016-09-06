@@ -7,7 +7,7 @@
 @endsection
 
 @section('title')
-    Compose
+    Edit
 @endsection
 
 @section('content')
@@ -19,14 +19,14 @@
         <div class="input-group input-group-lg post-title-group {{ $errors->has('postTitle') ? ' has-error' : '' }}">
           <span class="input-group-addon title-addon" id="basic-addon1">#</span>
           <input type="text" 
-            value="{{ old('postTitle') }}" 
+            value="{{ $post->title }}" 
             class="form-control post-title" 
             id="post-title" name="postTitle" 
             placeholder="Title" autocomplete="off" >
         </div>
         
         <div class="post-body-group">
-            <textarea id="editor" name="postBody"></textarea>
+            <textarea id="editor" name="postBody">{{ $post->body }}</textarea>
         </div>
         
         <button class="btn btn-lg btn-default btn-block" type="submit">Submit</button>
@@ -58,6 +58,6 @@
             },
         })
 
-        simplemde.value("{{ old('postBody') }}");
+
     </script>
 @endsection
