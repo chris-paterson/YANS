@@ -6,7 +6,7 @@
 
 .main h2 {
   font-family: 'Chivo', serif;
-  font-size: 28pt;
+  font-size: 24pt;
 }
 
 .main h3 {
@@ -27,6 +27,8 @@
   font-family: 'Roboto Slab', san-serif;
   font-size: 14pt;
 }
+
+.main th, .main td { padding: 16px; }
 
 .main pre {
   background: #ddd;
