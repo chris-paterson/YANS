@@ -3,5 +3,11 @@
 @section('title', 'Welcome')
 
 @section('content')
-    {{ App\User::first()->posts }}
+    <div class="jumbotron">
+      <h1>Yet Another News Site</h1>
+      <p>Write</p>
+      <p>Read</p>
+      <p>Sell</p>
+      <p><a class="btn btn-primary btn-lg" href="{{ url('posts/create') }}" role="button">Write your article now</a></p>
+    </div>
 @endsection

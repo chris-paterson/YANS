@@ -53,7 +53,7 @@
             spellChecker: false,
             tabSize: 4,
             renderingConfig: {
-              singleLineBreaks: true,
+              singleLineBreaks: false,
               codeSyntaxHighlighting: true,
             },
         })

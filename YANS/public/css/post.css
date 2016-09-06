@@ -1,36 +1,44 @@
-.main h1 {
-  font-family: 'Chivo', serif;
-  font-size: 32pt;
-  max-width: 32em;
+.article {
+  font-size: 14pt;
+  max-width: 64ch;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 800;
 }
 
-.main h2 {
-  font-family: 'Chivo', serif;
+.article h1 {
+  font-family: 'Roboto', serif;
+  font-size: 32pt;
+  line-height: 1.4em;
+}
+
+.article h2 {
+  font-family: 'Roboto', serif;
   font-size: 24pt;
 }
 
-.main h3 {
-  font-family: 'Chivo', serif;
+.article h3 {
+  font-family: 'Roboto', serif;
   font-size: 20pt;
 }
 
-.main h4 {
-  font-family: 'Chivo', serif;
+.article h4 {
+  font-family: 'Roboto', serif;
   font-size: 20pt;
 }
 
-.main h5, h6 {
-  font-family: 'Chivo', serif;
+.article h5, h6 {
+  font-family: 'Roboto', serif;
+  font-size: 14pt;
 }
 
-.main table {
+.article table {
   font-family: 'Roboto Slab', san-serif;
   font-size: 14pt;
 }
 
-.main th, .main td { padding: 16px; }
+.article th, .article td { padding: 16px; }
 
-.main pre {
+.article pre {
   background: #ddd;
   padding: 16px;
   font-size: 14pt;
@@ -38,7 +46,18 @@
   white-space: pre-wrap;
 }
 
-.main blockquote {
+.article blockquote {
   border-left: 4px solid #000;
   padding-left: 8px;
+}
+
+.article p {
+  line-height: 1.4;
+  margin-bottom: 32px;
+}
+
+.author {
+  font-weight: 300;
+  color: #999999;
+  margin-bottom: 64px;
 }
