@@ -11,6 +11,11 @@ use App\Http\Requests;
 
 class PostController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('auth', ['except' => ['index','show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +23,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::orderBy('created_at', 'DESC')->get();
+
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**

@@ -59,10 +59,5 @@
         })
 
         simplemde.value("{{ old('postBody') }}");
-
-        @if($errors->has('postBody'))
-            $('.CodeMirror').addClass('has-error')
-        @endif
-
     </script>
 @endsection
