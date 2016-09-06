@@ -20,7 +20,6 @@
 @section('scripts')
     <script src="/js/marked.js"></script>
     <script>
-        marked.setOptions
         document.getElementById('article-body').innerHTML = 
             marked(document.getElementById('article-body').innerHTML);
     </script>

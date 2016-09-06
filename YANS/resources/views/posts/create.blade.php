@@ -11,6 +11,7 @@
 @endsection
 
 @section('content')
+    @include('layouts/list-errors')
     <form class="form-horizontal" role="form" method="POST" action="{{ url('/posts') }}">
         <h2>Compose</h2>
         {{ csrf_field() }}
