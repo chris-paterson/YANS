@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
-use App\Http\Requests;
 use App\Post;
+use App\Http\Requests;
 
 class PostController extends Controller
 {
@@ -27,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        return view('posts.create');
     }
 
     /**
@@ -49,7 +50,7 @@ class PostController extends Controller
             'body' => $request->input('postBody'),
         ]);
 
-        return Redirect::route('post.show', ['id' => $post->id]);
+        return redirect()->route('posts.show', ['id' => $post->id]);
     }
 
     /**
@@ -61,7 +62,14 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        return view('post.show', ['post' => $post]);
+        $title = $post->title;
+        $body = $post->body;
+
+        return view('posts.show', 
+            [
+                'title' => $title,
+                'body' => $body
+            ]);
     }
 
     /**
