@@ -5,7 +5,8 @@
 @endsection
 
 @section('css')
-    <link href="/css/card.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/card.css">
 @endsection
 
 @section('content')
@@ -18,12 +19,10 @@
     <script src="/js/marked.js"></script>
 
     <script>
-        // $('.card-body').each(function( index ) {
-        //     $(this).text = marked($(this).text())
-        // });
+        let $cards = $('.card-body')
 
-
-        // document.getElementByClass('card-body').innerHTML = 
-        //     marked(document.getElementByClass('card-body').innerHTML);
+        $cards.each(function() {
+            this.innerHTML = marked(this.textContent)
+        })
     </script>
 @endsection

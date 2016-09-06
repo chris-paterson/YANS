@@ -10,3 +10,7 @@
 .navbar * {
     font-family: 'Roboto', serif;
 }
+
+.gray {
+    color: #999999;
+}
