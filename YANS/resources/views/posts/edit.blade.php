@@ -12,11 +12,11 @@
 
 @section('content')
     @include('layouts/list-errors')
-    <form class="form-horizontal" role="form" method="POST" action="{{ url('/posts') }}">
+    <form class="form-horizontal" role="form" method="PUT" action="{{ route('posts.update', ['id' => $post->id]) }}">
         <h2>Compose</h2>
         {{ csrf_field() }}
 
-        <div class="input-group input-group-lg post-title-group {{ $errors->has('postTitle') ? ' has-error' : '' }}">
+        <div class="input-group input-group-lg post-title-group">
           <span class="input-group-addon title-addon" id="basic-addon1">#</span>
           <input type="text" 
             value="{{ $post->title }}" 
@@ -57,7 +57,5 @@
               codeSyntaxHighlighting: true,
             },
         })
-
-
     </script>
 @endsection

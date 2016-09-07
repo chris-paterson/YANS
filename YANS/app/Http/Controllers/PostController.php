@@ -13,7 +13,7 @@ class PostController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('auth', ['except' => ['index','show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'update']]);
     }
 
     /**
@@ -54,7 +54,7 @@ class PostController extends Controller
         $post = Post::create([
             'user_id' => Auth::user()->id,
             'title' => $request->input('postTitle'),
-            'body' => $request->input('postBody'),
+            'body' => $request->input('postBody')
         ]);
 
         return redirect()->route('posts.show', ['id' => $post->id]);
@@ -69,7 +69,6 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-
         return view('posts.show', ['post' => $post]);
     }
 
@@ -95,7 +94,21 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'postTitle' => 'required|max:255',
+            'postBody' => 'required',
+        ]);
+
+        $post = Post::findOrFail($id);
+
+        $post->title = $request->input('postTitle');
+        $post->body = $request->input('postBody');
+
+        echo $post;
+
+        $post->save();
+
+        return redirect()->route('posts.show', ['id' => $post->id]);
     }
 
     /**
@@ -105,7 +118,12 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+        Post::destroy($id);
+
+        echo('zxcvbnm');
+        
+        return redirect()->route('posts.index');
+
     }
 }

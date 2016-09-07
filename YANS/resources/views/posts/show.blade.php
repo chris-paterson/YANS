@@ -14,10 +14,12 @@
         <h3 class="author text-center">By {{ $post->user->name }}</h3>
 
         @if(Auth::user() == $post->user)
-            <button type="button" class="btn btn-default pull-right">
-                <i class="glyphicon glyphicon-edit"></i>
-                Edit
-            </button>
+            <a href="{{ route('posts.edit', ['id' => $post->id]) }}">
+                <button type="button" class="btn btn-default pull-right">
+                    <i class="glyphicon glyphicon-edit"></i>
+                    Edit
+                </button>
+            </a>
         @endif
 
         <div id="article-body">{{ $post->body }}</div>
