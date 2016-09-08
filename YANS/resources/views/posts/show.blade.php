@@ -19,11 +19,9 @@
         </h3>
 
         @if(Auth::user() == $post->user)
-            <a href="{{ route('posts.edit', ['id' => $post->id]) }}">
-                <button type="button" class="btn btn-default pull-right">
-                    <i class="glyphicon glyphicon-edit"></i>
-                    Edit
-                </button>
+            <a class="btn btn-default pull-right" role="button" href="{{ route('posts.edit', ['id' => $post->id]) }}">
+                <i class="glyphicon glyphicon-edit"></i> 
+                Edit
             </a>
         @endif
 

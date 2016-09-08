@@ -19,6 +19,6 @@ body {
     padding-bottom: 64px;
 }
 
-button {
+button, .btn {
     font-family: 'Roboto', serif!important;
 }

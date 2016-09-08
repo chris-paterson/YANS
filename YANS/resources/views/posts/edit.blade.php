@@ -42,12 +42,6 @@
         
         <button class="btn btn-lg btn-default btn-block" type="submit">Save Changes</button>
     </form>
-
-    <form class="form-horizontal" role="form" method="POST" action="{{ route('posts.destroy', ['id' => $post->id]) }}">
-        {{ csrf_field() }}
-        {{ method_field('DELETE') }}
-        <button class="btn btn-lg btn-danger btn-block" type="submit">Delete</button>
-    </form>
 @endsection
 
 @section('scripts')
