@@ -4,7 +4,9 @@
             <div class="col-md-12">
                 <h3 class="card-title"> {{ $post->title }} </h3>
                 <p class="card-author gray">
-                    By <i>{{ $post->user->name }}</i>, 
+                    By <a href="{{ route('user.posts', ['id' => $post->user->id]) }}">
+                        <i>{{ $post->user->name }}</i>
+                    </a>, 
                     {{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}
                 </p>
                 <div class="card-body"> {{ $post->body }} </div>

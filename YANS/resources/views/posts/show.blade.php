@@ -11,7 +11,12 @@
 @section('content')
     <div class="article center-block">
         <h1 class="text-center">{{ $post->title }}</h1>
-        <h3 class="author text-center">By {{ $post->user->name }}</h3>
+        <h3 class="author text-center">
+            By 
+            <a href="{{ route('user.posts', ['id' => $post->user->id]) }}">
+                {{ $post->user->name }}
+            </a>
+        </h3>
 
         @if(Auth::user() == $post->user)
             <a href="{{ route('posts.edit', ['id' => $post->id]) }}">
