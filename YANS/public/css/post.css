@@ -5,6 +5,10 @@
   font-weight: 800;
 }
 
+.article img {
+  max-width: 100%;
+}
+
 .article h1 {
   font-family: 'Roboto', serif;
   font-size: 32pt;
@@ -46,6 +50,7 @@
   font-size: 14pt;
   border-radius: 4px;
   white-space: pre-wrap;
+  margin: 32px 0 32px 0 ;
 }
 
 .article blockquote {

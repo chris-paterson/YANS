@@ -23,7 +23,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'DESC')->get();
+        $posts = Post::where('isPublished', '1')
+            ->orderBy('created_at', 'DESC')
+            ->get();
 
         return view('posts.index', ['posts' => $posts]);
     }
@@ -54,7 +56,8 @@ class PostController extends Controller
         $post = Post::create([
             'user_id' => Auth::user()->id,
             'title' => $request->input('postTitle'),
-            'body' => $request->input('postBody')
+            'body' => $request->input('postBody'),
+            'isPublished' => $request->input('publish') ? 1 : 0
         ]);
 
         return redirect()->route('posts.show', ['id' => $post->id]);
@@ -103,6 +106,7 @@ class PostController extends Controller
 
         $post->title = $request->input('postTitle');
         $post->body = $request->input('postBody');
+        $post->isPublished = $request->input('publish') ? 1 : 0;
 
         $post->save();
 

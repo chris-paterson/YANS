@@ -28,7 +28,13 @@
         <div class="post-body-group">
             <textarea id="editor" name="postBody"></textarea>
         </div>
-        
+
+        <div class="checkbox pull-right publish">
+            <label>
+                <input type="checkbox" name="publish"> <strong>Publish</strong>
+            </label>
+        </div>
+
         <button class="btn btn-lg btn-default btn-block" type="submit">Submit</button>
     </form>
 @endsection

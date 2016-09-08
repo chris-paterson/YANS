@@ -27,3 +27,7 @@
 .post-title:focus {
     box-shadow: none;
 }
+
+.publish {
+    padding: 16px 0px 16px 0px;
+}

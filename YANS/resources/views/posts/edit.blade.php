@@ -29,6 +29,16 @@
         <div class="post-body-group">
             <textarea id="editor" name="postBody">{{ $post->body }}</textarea>
         </div>
+
+        <div class="checkbox pull-right publish">
+            <label>
+                <input type="checkbox" name="publish"
+                    @if($post->isPublished)
+                        checked
+                    @endif
+                > <strong>Publish</strong>
+            </label>
+        </div>
         
         <button class="btn btn-lg btn-default btn-block" type="submit">Save Changes</button>
     </form>
