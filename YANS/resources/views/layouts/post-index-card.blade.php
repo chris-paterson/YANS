@@ -1,4 +1,3 @@
-
 <div class="card article">
     <h3 class="card-title"> {{ $post->title }} </h3>
     <p class="card-author gray">
@@ -20,10 +19,15 @@
 
         @if(!$post->isPublished)
             <i class="glyphicon glyphicon-eye-close pull-right gray"
+                data-toggle="tooltip" data-placement="left"
                 title="This article is not published."></i>
         @endif
     </span>
-    
-
-    
 </div>
+
+@section('scripts')
+    @parent
+    <script>
+        $('.glyphicon-eye-close').tooltip()
+    </script>
+@endsection

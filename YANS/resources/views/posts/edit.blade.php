@@ -12,8 +12,16 @@
 
 @section('content')
     @include('layouts/list-errors')
-    <form class="form-horizontal" role="form" method="POST" action="{{ route('posts.update', ['id' => $post->id]) }}">
+    <span>
+        <form role="form" method="POST" id="delete-post" action="{{ route('posts.destroy', ['id' => $post->id]) }}">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <button class="btn btn-danger pull-right" id="delete-button" type="submit">Delete</button>
+        </form>
         <h2>Compose</h2>
+    </span>
+
+    <form class="form-horizontal" role="form" method="POST" action="{{ route('posts.update', ['id' => $post->id]) }}">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
 
@@ -30,7 +38,9 @@
             <textarea id="editor" name="postBody">{{ $post->body }}</textarea>
         </div>
 
-        <div class="checkbox pull-right publish">
+        <div class="checkbox pull-right publish"
+            data-toggle="tooltip" data-placement="left"
+            title="Other users can only see this article if you have checked this box.">
             <label>
                 <input type="checkbox" name="publish"
                     @if($post->isPublished)
@@ -68,5 +78,14 @@
               codeSyntaxHighlighting: true,
             },
         })
+
+        $('.publish').tooltip()
+
+        // Ensure the user really does want to delete the post.
+        $("#delete-button").click(function(){
+            if (confirm("Are you sure you wish to delete this article forever?")){
+               $('#delete-post').submit();
+            }
+       });
     </script>
 @endsection
