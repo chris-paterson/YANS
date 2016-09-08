@@ -12,9 +12,10 @@
 
 @section('content')
     @include('layouts/list-errors')
-    <form class="form-horizontal" role="form" method="PUT" action="{{ route('posts.update', ['id' => $post->id]) }}">
+    <form class="form-horizontal" role="form" method="POST" action="{{ route('posts.update', ['id' => $post->id]) }}">
         <h2>Compose</h2>
         {{ csrf_field() }}
+        {{ method_field('PATCH') }}
 
         <div class="input-group input-group-lg post-title-group">
             <span class="input-group-addon title-addon" id="basic-addon1">#</span>
@@ -32,7 +33,9 @@
         <button class="btn btn-lg btn-default btn-block" type="submit">Save Changes</button>
     </form>
 
-    <form class="form-horizontal" role="form" method="DELETE" action="{{ route('posts.destroy', array('id' => $post->id))  }}">
+    <form class="form-horizontal" role="form" method="POST" action="{{ route('posts.destroy', ['id' => $post->id]) }}">
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
         <button class="btn btn-lg btn-danger btn-block" type="submit">Delete</button>
     </form>
 @endsection
