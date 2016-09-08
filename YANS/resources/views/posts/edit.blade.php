@@ -17,19 +17,23 @@
         {{ csrf_field() }}
 
         <div class="input-group input-group-lg post-title-group">
-          <span class="input-group-addon title-addon" id="basic-addon1">#</span>
-          <input type="text" 
-            value="{{ $post->title }}" 
-            class="form-control post-title" 
-            id="post-title" name="postTitle" 
-            placeholder="Title" autocomplete="off" >
+            <span class="input-group-addon title-addon" id="basic-addon1">#</span>
+            <input type="text" 
+                value="{{ $post->title }}" 
+                class="form-control post-title" 
+                id="post-title" name="postTitle" 
+                placeholder="Title" autocomplete="off" >
         </div>
         
         <div class="post-body-group">
             <textarea id="editor" name="postBody">{{ $post->body }}</textarea>
         </div>
         
-        <button class="btn btn-lg btn-default btn-block" type="submit">Submit</button>
+        <button class="btn btn-lg btn-default btn-block" type="submit">Save Changes</button>
+    </form>
+
+    <form class="form-horizontal" role="form" method="DELETE" action="{{ route('posts.destroy', array('id' => $post->id))  }}">
+        <button class="btn btn-lg btn-danger btn-block" type="submit">Delete</button>
     </form>
 @endsection
 

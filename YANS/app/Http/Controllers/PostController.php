@@ -13,7 +13,7 @@ class PostController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('auth', ['except' => ['index', 'show', 'update']]);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -104,8 +104,6 @@ class PostController extends Controller
         $post->title = $request->input('postTitle');
         $post->body = $request->input('postBody');
 
-        echo $post;
-
         $post->save();
 
         return redirect()->route('posts.show', ['id' => $post->id]);
@@ -120,8 +118,6 @@ class PostController extends Controller
     public function destroy($id)
     {   
         Post::destroy($id);
-
-        echo('zxcvbnm');
         
         return redirect()->route('posts.index');
 
