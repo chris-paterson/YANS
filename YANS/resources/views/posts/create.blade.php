@@ -12,8 +12,8 @@
 
 @section('content')
     @include('layouts/list-errors')
+    <h2>Compose</h2>
     <form class="form-horizontal" role="form" method="POST" action="{{ route('posts.store')  }}">
-        <h2>Compose</h2>
         {{ csrf_field() }}
 
         <div class="input-group input-group-lg post-title-group {{ $errors->has('postTitle') ? ' has-error' : '' }}">
