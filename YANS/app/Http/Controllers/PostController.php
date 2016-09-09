@@ -55,13 +55,15 @@ class PostController extends Controller
         $this->validate($request, [
             'postTitle' => 'required|max:255',
             'postBody' => 'required',
+            'price' => 'required|numeric'
         ]);
 
         $post = Post::create([
             'user_id' => Auth::user()->id,
             'title' => $request->input('postTitle'),
             'body' => $request->input('postBody'),
-            'isPublished' => $request->input('publish') ? 1 : 0
+            'isPublished' => $request->input('publish') ? 1 : 0,
+            'price' => $request->input('price')
         ]);
 
         return redirect()->route('posts.show', ['id' => $post->id]);
@@ -104,6 +106,7 @@ class PostController extends Controller
         $this->validate($request, [
             'postTitle' => 'required|max:255',
             'postBody' => 'required',
+            'price' => 'required|numeric'
         ]);
 
         $post = Post::findOrFail($id);
@@ -111,6 +114,7 @@ class PostController extends Controller
         $post->title = $request->input('postTitle');
         $post->body = $request->input('postBody');
         $post->isPublished = $request->input('publish') ? 1 : 0;
+        $post->price = $request->input('price');
 
         $post->save();
 
@@ -142,22 +146,24 @@ class PostController extends Controller
         // See your keys here: https://dashboard.stripe.com/account/apikeys
         \Stripe\Stripe::setApiKey(env('STRIPE_DEV'));
 
+        $post = Post::findOrFail($id);
+
         // Get the credit card details submitted by the form
         $token = $request->input('stripeToken');
 
         // Create a charge: this will charge the user's card
         try {
             $charge = \Stripe\Charge::create(array(
-                "amount" => 1000, // Amount in cents
-                "currency" => "gbp",
+                "amount" => $post->price * 100, // Amount in cents
+                "currency" => "usd",
                 "source" => $token,
-                "description" => "Example charge"
+                "description" => $post->title . " by " . $post->user->name
             ));
         } catch(\Stripe\Error\Card $e) {
-          // The card has been declined
-            echo "Nah fam";
+            // The card has been declined
+
         }
 
-        echo "k fam, done.";
+        return redirect()->route('posts.show', ['id' => $post->id]);
     }
 }

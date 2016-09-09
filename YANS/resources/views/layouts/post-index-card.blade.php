@@ -9,7 +9,11 @@
 
     <span class="card-footer">
         <a class="btn btn-default" role="button" href="{{ route('posts.show', ['id' => $post->id]) }}">
-            Read Article
+            @if($post->price == 0)
+                Read Article
+            @else
+                Preview Article
+            @endif
         </a>
         
         @if($post->user == Auth::user())

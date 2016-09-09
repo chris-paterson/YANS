@@ -28,10 +28,23 @@
         <div class="post-body-group">
             <textarea id="editor" name="postBody"></textarea>
         </div>
-
-        <div class="checkbox pull-right publish">
+        
+        <h3>Price</h3>
+        <p>If you would like the article to be free, simply enter a price of $0 or $0.00.</p>
+        <div class="row">
+            <div class="col-xs-2">
+                <div class="input-group pull-right">
+                    <span class="input-group-addon">$</span>
+                    <input type="number" step="0.01" name="price" class="form-control" placeholder="e.g. 2.99" value="{{ old('price') }}" >
+                </div>
+            </div>
+        </div>
+        
+        <h3>Publish</h3>
+        <p>If checked, this article will be publicly available to view or buy.</p>
+        <div class="checkbox publish">
             <label>
-                <input type="checkbox" name="publish"> <strong>Publish</strong>
+                <input type="checkbox" name="publish"><strong>Publish</strong>
             </label>
         </div>
 
