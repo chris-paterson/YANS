@@ -23,6 +23,10 @@
                 <i class="glyphicon glyphicon-edit"></i> 
                 Edit
             </a>
+        @elseif(Auth::user()->hasPurchased($post))
+            bought
+        @else
+            Buy it, freeloader.
         @endif
 
         <div id="article-body">{{ $post->body }}</div>

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 use App\Post;
+use App\Transaction;
 use App\Http\Requests;
 use App\Http\Requests\DestroyPostRequest;
 use App\Http\Requests\UpdatePostRequest;
@@ -161,8 +162,13 @@ class PostController extends Controller
             ));
         } catch(\Stripe\Error\Card $e) {
             // The card has been declined
-
         }
+
+        $post = Transaction::create([
+            'purchased_by' => Auth::user()->id,
+            'post' => $post->id,
+            'price' => $post->price
+        ]);
 
         return redirect()->route('posts.show', ['id' => $post->id]);
     }

@@ -31,4 +31,18 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Post');
     }
+
+    public function transaction()
+    {
+        $this->belongsTo('App\Transaction');
+    }
+
+    public function hasPurchased($postId)
+    {
+        $hasPurchased = Transaction::where('purchased_by', $this->id)
+            ->where('post', $postId)
+            ->first();
+
+        return $hasPurchased;
+    }
 }
