@@ -35,4 +35,15 @@ class UserController extends Controller
 
         return view('posts.index', ['posts' => $posts]);
     }
+
+    public function library($id)
+    {
+        $transactionsByUser = Transaction::with('post')
+            ->where('purchased_by', Auth::user()->id)
+            ->get();
+
+        $posts = $transactionsByUser->post();
+
+        return view('posts.index', ['posts' => $posts]);
+    }
 }

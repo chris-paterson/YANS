@@ -147,7 +147,7 @@ class PostController extends Controller
         // See your keys here: https://dashboard.stripe.com/account/apikeys
         \Stripe\Stripe::setApiKey(env('STRIPE_DEV'));
 
-        $post = Post::findOrFail($id);
+        $post = Post::find($id);
 
         // Get the credit card details submitted by the form
         $token = $request->input('stripeToken');
@@ -164,7 +164,7 @@ class PostController extends Controller
             // The card has been declined
         }
 
-        $post = Transaction::create([
+        $transaction = Transaction::create([
             'purchased_by' => Auth::user()->id,
             'post' => $post->id,
             'price' => $post->price
