@@ -11,6 +11,8 @@ use App\Http\Requests;
 use App\Http\Requests\DestroyPostRequest;
 use App\Http\Requests\UpdatePostRequest;
 
+use Stripe\Stripe;
+
 class PostController extends Controller
 {
 
@@ -126,5 +128,36 @@ class PostController extends Controller
         Post::destroy($id);
         return redirect()->route('posts.index');
 
+    }
+
+    public function purchase($id) 
+    {
+        $post = Post::findOrFail($id);
+        return view('posts.purchase', ['post' => $post]);
+    }
+
+    public function processPurchase($id, request $request) 
+    {
+        // Set your secret key: remember to change this to your live secret key in production
+        // See your keys here: https://dashboard.stripe.com/account/apikeys
+        \Stripe\Stripe::setApiKey(env('STRIPE_DEV'));
+
+        // Get the credit card details submitted by the form
+        $token = $request->input('stripeToken');
+
+        // Create a charge: this will charge the user's card
+        try {
+            $charge = \Stripe\Charge::create(array(
+                "amount" => 1000, // Amount in cents
+                "currency" => "gbp",
+                "source" => $token,
+                "description" => "Example charge"
+            ));
+        } catch(\Stripe\Error\Card $e) {
+          // The card has been declined
+            echo "Nah fam";
+        }
+
+        echo "k fam, done.";
     }
 }

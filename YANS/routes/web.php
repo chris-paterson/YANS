@@ -22,3 +22,6 @@ Route::get('/home', 'HomeController@index');
 Route::get('user/{id}/posts', 'UserController@showPosts')->name('user.posts');
 
 Route::resource('posts', 'PostController');
+Route::get('posts/{id}/purchase', 'PostController@purchase')->name('posts.purchase');
+Route::post('posts/{id}/purchase/process', 'PostController@processPurchase')
+    ->name('posts.purchase.process');
