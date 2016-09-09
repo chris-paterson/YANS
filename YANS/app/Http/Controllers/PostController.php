@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Redirect;
 
 use App\Post;
 use App\Http\Requests;
+use App\Http\Requests\DestroyPostRequest;
+use App\Http\Requests\UpdatePostRequest;
 
 class PostController extends Controller
 {
@@ -22,7 +24,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         $posts = Post::where('isPublished', '1')
             ->orderBy('created_at', 'DESC')
             ->get();
@@ -95,7 +97,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, $id)
     {
         $this->validate($request, [
             'postTitle' => 'required|max:255',
@@ -119,10 +121,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, DestroyPostRequest $request)
     {   
         Post::destroy($id);
-        
         return redirect()->route('posts.index');
 
     }

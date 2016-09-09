@@ -11,11 +11,13 @@
         <a class="btn btn-default" role="button" href="{{ route('posts.show', ['id' => $post->id]) }}">
             Read Article
         </a>
-
-        <a class="btn btn-default" role="button" href="{{ route('posts.edit', ['id' => $post->id]) }}">
-            <i class="glyphicon glyphicon-edit"></i> 
-            Edit
-        </a>
+        
+        @if($post->user == Auth::user())
+            <a class="btn btn-default" role="button" href="{{ route('posts.edit', ['id' => $post->id]) }}">
+                <i class="glyphicon glyphicon-edit"></i> 
+                Edit
+            </a>
+        @endif
 
         @if(!$post->isPublished)
             <i class="glyphicon glyphicon-eye-close pull-right gray"
