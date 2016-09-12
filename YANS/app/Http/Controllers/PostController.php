@@ -147,26 +147,30 @@ class PostController extends Controller
 
         $post = Post::find($id);
 
-        // Get the credit card details submitted by the form
-        $token = $request->input('stripeToken');
+        // Extra check to ensure user can not buy the post for a second time.
+        if(!Auth::user()->hasPurchased($post)) {
+            // Get the credit card details submitted by the form
+            $token = $request->input('stripeToken');
 
-        // Create a charge: this will charge the user's card
-        try {
-            $charge = \Stripe\Charge::create(array(
-                "amount" => $post->price * 100, // Amount in cents
-                "currency" => "usd",
-                "source" => $token,
-                "description" => $post->title . " by " . $post->user->name
-            ));
-        } catch(\Stripe\Error\Card $e) {
-            // The card has been declined
+            // Create a charge: this will charge the user's card
+            try {
+                $charge = \Stripe\Charge::create(array(
+                    "amount" => $post->price * 100, // Amount in cents
+                    "currency" => "usd",
+                    "source" => $token,
+                    "description" => $post->title . " by " . $post->user->name
+                ));
+            } catch(\Stripe\Error\Card $e) {
+                // The card has been declined
+                // TODO: Redirect to error page?
+            }
+
+            $transaction = Transaction::create([
+                'user_id' => Auth::user()->id,
+                'post_id' => $post->id,
+                'price' => $post->price
+            ]);
         }
-
-        $transaction = Transaction::create([
-            'purchased_by' => Auth::user()->id,
-            'post' => $post->id,
-            'price' => $post->price
-        ]);
 
         return redirect()->route('posts.show', ['id' => $post->id]);
     }

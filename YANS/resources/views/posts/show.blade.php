@@ -23,10 +23,11 @@
                 <i class="glyphicon glyphicon-edit"></i> 
                 Edit
             </a>
-        @elseif(Auth::user()->hasPurchased($post))
-            bought
-        @else
-            Buy it, freeloader.
+        {{-- User has logged in and has not bought the post --}}
+        @elseif(Auth::user() && !Auth::user()->hasPurchased($post))
+            <a class="btn btn-default pull-right" role="button" href="{{ route('posts.purchase', ['id' => $post->id]) }}">
+                Purchase for ${{ $post->price }}
+            </a>
         @endif
 
         <div id="article-body">{{ $post->body }}</div>

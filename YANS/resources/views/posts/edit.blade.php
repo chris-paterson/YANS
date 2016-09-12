@@ -53,7 +53,10 @@
         <p>If checked, this post will be publicly available to view or buy.</p>
         <div class="checkbox publish">
             <label>
-                <input type="checkbox" name="publish"> <strong>Publish</strong>
+                <input type="checkbox" 
+                    name="publish" 
+                    {{ $post->isPublished ? 'checked' : 'unchecked' }}> 
+                    <strong>Publish</strong>
             </label>
         </div>
         

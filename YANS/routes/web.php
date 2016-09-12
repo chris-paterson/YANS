@@ -17,9 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', function() {
-    return phpinfo();
-});
+Route::get('/home', 'HomeController@index');
 
 Route::get('user/{id}/posts', 'UserController@showPosts')->name('user.posts');
 Route::get('user/{id}/purchased', 'UserController@purchased')->name('user.purchased');

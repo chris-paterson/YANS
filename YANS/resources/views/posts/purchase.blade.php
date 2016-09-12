@@ -15,38 +15,47 @@
                 <span class="payment-errors"></span>
                 
                 {{ csrf_field() }}
-
-                <div class="form-row">
-                    <label>
-                        <span>Card Number</span>
-                        <input type="text" size="20" data-stripe="number">
-                    </label>
+                
+                <div class='form-row'>
+                    <div class='col-xs-12 form-group card required'>
+                        <label class='control-label'>Card Number</label>
+                        <input autocomplete="off" data-stripe="number" class="form-control card-number" size="20" type="text">
+                    </div>
                 </div>
-
-                <div class="form-row">
-                    <label>
-                        <span>Expiration (MM/YY)</span>
-                        <input type="text" size="2" data-stripe="exp_month">
-                    </label>
-                    <span> / </span>
-                    <input type="text" size="2" data-stripe="exp_year">
+                <div class='form-row'>
+                    <div class='col-xs-4 form-group cvc required'>
+                        <label class='control-label'>CVC</label>
+                        <input autocomplete="off" class="form-control card-cvc" placeholder="ex. 311" size="4" type="text" data-stripe="cvc">
+                    </div>
+                    <div class='col-xs-4 form-group expiration required'>
+                        <label class='control-label'>Expiration</label>
+                        <input class='form-control card-expiry-month' placeholder='MM' size='2' type='text' data-stripe="exp_month">
+                    </div>
+                    <div class='col-xs-4 form-group expiration required'>
+                        <label class='control-label'> </label>
+                        <input class='form-control card-expiry-year' placeholder='YY' size='2' type='text' data-stripe="exp_year">
+                    </div>
                 </div>
-
-                <div class="form-row">
-                    <label>
-                        <span>CVC</span>
-                        <input type="text" size="4" data-stripe="cvc">
-                    </label>
+                <div class='form-row'>
+                    <div class='col-md-12'>
+                        <div class='form-control total btn btn-info'>
+                            Total:
+                            <span class='amount'> ${{ $post->price }} </span>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="form-row">
-                    <label>
-                        <span>Billing Zip</span>
-                        <input type="text" size="6" data-stripe="address_zip">
-                    </label>
+                <div class='form-row'>
+                    <div class='col-md-12 form-group'>
+                        <button class='form-control btn btn-default submit-button' style="margin-top: 16px;" type='submit'>Pay</button>
+                    </div>
                 </div>
-
-                <input type="submit" class="submit" value="Submit Payment">
+                <div class='form-row'>
+                    <div class='col-md-12 error form-group hide'>
+                        <div class='alert-danger alert'>
+                            Please correct the errors and try again.
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

@@ -39,8 +39,8 @@ class User extends Authenticatable
 
     public function hasPurchased($post)
     {
-        $hasPurchased = Transaction::where('purchased_by', $this->id)
-            ->where('post', $post->id)
+        $hasPurchased = Transaction::where('user_id', $this->id)
+            ->where('post_id', $post->id)
             ->first();
 
         return $hasPurchased;
