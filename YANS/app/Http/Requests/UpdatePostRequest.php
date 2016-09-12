@@ -26,7 +26,9 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'postTitle' => 'required|max:255',
+            'postBody' => 'required',
+            'price' => 'required|numeric'
         ];
     }
 }

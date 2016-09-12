@@ -18,7 +18,11 @@ class PostController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', 
+            ['except' => ['index', 'show']]);
+
+        $this->middleware('userCreatedPost', 
+            ['only' => ['edit', 'update', 'destroy']]);
     }
 
     /**
@@ -104,12 +108,6 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, $id)
     {
-        $this->validate($request, [
-            'postTitle' => 'required|max:255',
-            'postBody' => 'required',
-            'price' => 'required|numeric'
-        ]);
-
         $post = Post::findOrFail($id);
 
         $post->title = $request->input('postTitle');
