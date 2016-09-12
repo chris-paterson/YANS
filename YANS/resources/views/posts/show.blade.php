@@ -18,19 +18,30 @@
             </a>
         </h3>
 
+        
         @if(Auth::user() == $post->user)
+            {{-- User created post --}}
             <a class="btn btn-default pull-right" role="button" href="{{ route('posts.edit', ['id' => $post->id]) }}">
                 <i class="glyphicon glyphicon-edit"></i> 
                 Edit
             </a>
-        {{-- User has logged in and has not bought the post --}}
-        @elseif(Auth::user() && !Auth::user()->hasPurchased($post))
-            <a class="btn btn-default pull-right" role="button" href="{{ route('posts.purchase', ['id' => $post->id]) }}">
-                Purchase for ${{ $post->price }}
-            </a>
-        @endif
 
-        <div id="article-body">{{ $post->body }}</div>
+            <div id="article-body">{{ $post->body }}</div>
+        @elseif(Auth::user() && !Auth::user()->hasPurchased($post))
+            {{-- User has logged in and has not bought the post --}}
+            @if($post->isFree())
+                <div id="article-body">{{ $post->body }}</div>
+            @else
+                <div id="article-body">{{ $post->preview }}</div>
+            @endif
+
+            <a class="btn btn-default btn-block btn-lg" role="button" href="{{ route('posts.purchase', ['id' => $post->id]) }}">
+                Purchase the rest of this article for ${{ $post->price }}
+            </a>
+        @else
+            {{-- User has bought the article --}}
+            <div id="article-body">{{ $post->body }}</div>
+        @endif
     </div>
 @endsection
 

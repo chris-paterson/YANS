@@ -58,11 +58,13 @@
                     post. It should act as a taster of your post.
                 </p>
 
-                <a href="#" class="btn btn-default">Add Preview</a>
+                <a href="#" class="btn btn-default" data-toggle="modal" data-target=".preview-modal">
+                    Add Preview
+                </a>
+                @include('modals.preview-modal')
                 {{-- TODO: If there is content in the preview, change add to edit --}}
             </div>
         </div>
-        
         
         <h3>Publish</h3>
         <p>If checked, this post will be publicly available to view or buy.</p>

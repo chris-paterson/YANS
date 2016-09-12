@@ -11,7 +11,8 @@ class Post extends Model
         'title', 
         'body', 
         'isPublished', 
-        'price'
+        'price',
+        'preview'
     ];
 
     public function user() 
@@ -22,5 +23,9 @@ class Post extends Model
     public function transaction()
     {
         return $this->hasMany('App\Transaction');
+    }
+
+    public function isFree() {
+        return $this->price == 0;
     }
 }

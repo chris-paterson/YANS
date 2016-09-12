@@ -68,7 +68,8 @@ class PostController extends Controller
             'title' => $request->input('postTitle'),
             'body' => $request->input('postBody'),
             'isPublished' => $request->input('publish') ? 1 : 0,
-            'price' => $request->input('price')
+            'price' => $request->input('price'),
+            'preview' => $request->input('preview'),
         ]);
 
         return redirect()->route('posts.show', ['id' => $post->id]);
@@ -114,6 +115,7 @@ class PostController extends Controller
         $post->body = $request->input('postBody');
         $post->isPublished = $request->input('publish') ? 1 : 0;
         $post->price = $request->input('price');
+        $post->preview = $request->input('preview');
 
         $post->save();
 

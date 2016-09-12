@@ -29,14 +29,31 @@
             <textarea id="editor" name="postBody"></textarea>
         </div>
         
-        <h3>Price</h3>
-        <p>If you would like the post to be free, simply enter a price of $0 or $0.00.</p>
         <div class="row">
-            <div class="col-xs-2">
-                <div class="input-group pull-right">
-                    <span class="input-group-addon">$</span>
-                    <input type="number" step="0.01" name="price" class="form-control" placeholder="e.g. 2.99" value="{{ old('price') }}" >
+            <div class="col-sm-6">
+                <h3>Price</h3>
+                <p>If you would like the post to be free, simply enter a price of $0 or $0.00.</p>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div class="input-group pull-right">
+                            <span class="input-group-addon">$</span>
+                            <input type="number" step="0.01" name="price" class="form-control" placeholder="e.g. 2.99" value="old('price')">
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="col-sm-6">
+                <h3>Preview</h3>
+                <p>
+                    A preview can be read by people who have not bought your 
+                    post. It should act as a taster of your post.
+                </p>
+
+                <a href="#" class="btn btn-default" data-toggle="modal" data-target=".preview-modal">
+                    Add Preview
+                </a>
+                @include('modals.preview-modal')
+                {{-- TODO: If there is content in the preview, change add to edit --}}
             </div>
         </div>
         
