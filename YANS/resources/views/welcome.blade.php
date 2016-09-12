@@ -8,12 +8,12 @@
         <h3>Write</h3>
         <h3>Read</h3>
         <h3>Sell</h3>
-        <p><a class="btn btn-primary btn-lg" href="{{ route('posts.create') }}" role="button">Write your article now</a></p>
+        <p><a class="btn btn-primary btn-lg" href="{{ route('posts.create') }}" role="button">Write your post now</a></p>
 
         <p>or</p>
 
         <p>
-            <a class="btn btn-default btn-lg" href="{{ route('posts.index') }}" role="button">Read articles now</a>
+            <a class="btn btn-default btn-lg" href="{{ route('posts.index') }}" role="button">Read post now</a>
         </p>
     </div>
 @endsection

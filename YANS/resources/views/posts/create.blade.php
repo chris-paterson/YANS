@@ -30,7 +30,7 @@
         </div>
         
         <h3>Price</h3>
-        <p>If you would like the article to be free, simply enter a price of $0 or $0.00.</p>
+        <p>If you would like the post to be free, simply enter a price of $0 or $0.00.</p>
         <div class="row">
             <div class="col-xs-2">
                 <div class="input-group pull-right">
@@ -41,7 +41,7 @@
         </div>
         
         <h3>Publish</h3>
-        <p>If checked, this article will be publicly available to view or buy.</p>
+        <p>If checked, this post will be publicly available to view or buy.</p>
         <div class="checkbox publish">
             <label>
                 <input type="checkbox" name="publish"><strong>Publish</strong>

@@ -26,7 +26,7 @@
         @if(!$post->isPublished)
             <i class="glyphicon glyphicon-eye-close pull-right gray"
                 data-toggle="tooltip" data-placement="left"
-                title="This article is not published."></i>
+                title="This post is not published."></i>
         @endif
     </span>
 </div>
