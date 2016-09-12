@@ -21,6 +21,6 @@ class Post extends Model
 
     public function transaction()
     {
-        $this->belongsTo('App\Transaction');
+        return $this->belongsTo('App\Transaction');
     }
 }

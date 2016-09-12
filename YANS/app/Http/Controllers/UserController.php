@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Post;
+use App\Transaction;
 use App\Http\Requests;
 
 class UserController extends Controller
@@ -37,12 +38,17 @@ class UserController extends Controller
     }
 
     public function library($id)
-    {
-        $transactionsByUser = Transaction::with('post')
-            ->where('purchased_by', Auth::user()->id)
+    {   
+
+        $transactionsByUser = Transaction::where('user_id', Auth::user()->id)
             ->get();
 
-        $posts = $transactionsByUser->post();
+        $posts = [];
+        foreach ($transactionsByUser as $transaction) {
+            $posts[] = $transaction->post;
+        }
+
+        dd($posts);
 
         return view('posts.index', ['posts' => $posts]);
     }

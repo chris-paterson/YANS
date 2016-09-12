@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     protected $fillable = [
-        'purchased_by', 
-        'post', 
+        'user_id', 
+        'post_id', 
         'price'
     ];
 
@@ -19,6 +19,6 @@ class Transaction extends Model
 
     public function post() 
     {
-        return $this->has('App\Post');
+        return $this->has('App\Post', 'post_id');
     }
 }
