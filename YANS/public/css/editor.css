@@ -31,3 +31,9 @@
 .publish {
     padding: 16px 0px 16px 0px;
 }
+
+.post-preview textarea{
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12pt;
+  line-height: 1.45;
+}

@@ -10,7 +10,9 @@
                     Simply copy and paste the section of your post that you wish
                     to be the preview.
                 </p>
-                <textarea class="form-control" name="preview" rows="16"></textarea>
+                <div class="post-preview">
+                    <textarea class="form-control" name="preview" rows="16">{{ $post->preview }}</textarea>
+                </div>
             </div>
         </div>
     </div>

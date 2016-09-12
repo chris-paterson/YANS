@@ -61,7 +61,7 @@
                 <a href="#" class="btn btn-default" data-toggle="modal" data-target=".preview-modal">
                     Add Preview
                 </a>
-                @include('modals.preview-modal')
+                @include('modals.preview-modal', $post)
                 {{-- TODO: If there is content in the preview, change add to edit --}}
             </div>
         </div>
