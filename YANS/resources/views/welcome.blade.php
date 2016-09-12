@@ -8,6 +8,7 @@
         <h3>Write</h3>
         <h3>Read</h3>
         <h3>Sell</h3>
+        
         <p><a class="btn btn-primary btn-lg" href="{{ route('posts.create') }}" role="button">Write your post now</a></p>
 
         <p>or</p>
