@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::get('user/{id}/posts', 'UserController@showPosts')->name('user.posts');
-// Route::get('user/{id}/library', 'UserController@library')->name('user.library');
+Route::get('user/{id}/purchased', 'UserController@purchased')->name('user.purchased');
 
 Route::resource('posts', 'PostController');
 Route::get('posts/{id}/purchase', 'PostController@purchase')->name('posts.purchase');

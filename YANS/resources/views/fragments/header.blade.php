@@ -38,9 +38,9 @@
                             <li>
                                 <a href="{{ route('user.posts', ['id' => Auth::user()->id]) }}">My Posts</a>
                             </li>
-                            {{-- <li>
-                                <a href="{{ route('user.library', ['id' => Auth::user()->id]) }}">Library</a>
-                            </li> --}}
+                            <li>
+                                <a href="{{ route('user.purchased', ['id' => Auth::user()->id]) }}">Purchased Posts</a>
+                            </li>
                             <li role="separator" class="divider"></li>
                             {{-- Logout --}}
                             <li>

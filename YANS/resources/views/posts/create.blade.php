@@ -67,7 +67,6 @@
                 "preview",
                 "|",
                 "guide"
-
             ],
             spellChecker: false,
             tabSize: 4,

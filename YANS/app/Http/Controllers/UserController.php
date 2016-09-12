@@ -37,18 +37,14 @@ class UserController extends Controller
         return view('posts.index', ['posts' => $posts]);
     }
 
-    public function library($id)
+    public function purchased($id)
     {   
-
-        $transactionsByUser = Transaction::where('user_id', Auth::user()->id)
-            ->get();
+        $transactionsByUser = Transaction::with('post')->whereUserId($id)->get();
 
         $posts = [];
         foreach ($transactionsByUser as $transaction) {
             $posts[] = $transaction->post;
         }
-
-        dd($posts);
 
         return view('posts.index', ['posts' => $posts]);
     }

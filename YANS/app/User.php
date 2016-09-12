@@ -34,7 +34,7 @@ class User extends Authenticatable
 
     public function transaction()
     {
-        $this->belongsTo('App\Transaction');
+        $this->hasMany('App\Transaction');
     }
 
     public function hasPurchased($post)

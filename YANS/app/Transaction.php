@@ -14,11 +14,11 @@ class Transaction extends Model
 
     public function user() 
     {
-        return $this->has('App\User');
+        return $this->belongsTo('App\User');
     }
 
     public function post() 
     {
-        return $this->has('App\Post', 'post_id');
+        return $this->belongsTo('App\Post');
     }
 }
