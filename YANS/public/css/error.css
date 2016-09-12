@@ -8,22 +8,27 @@ body {
     width: 100%;
     color: #B0BEC5;
     display: table;
-    font-weight: 100;
+
     font-family: 'Lato', sans-serif;
 }
 
-.container {
+.error-container {
     text-align: center;
-    display: table-cell;
     vertical-align: middle;
 }
 
-.content {
+.error-content {
     text-align: center;
     display: inline-block;
 }
 
-.title {
+.error-title {
     font-size: 72px;
     margin-bottom: 40px;
+}
+
+.error-subtitle {
+    font-size: 36px;
+    text-transform: uppercase;
+    margin-bottom: 64px;
 }
