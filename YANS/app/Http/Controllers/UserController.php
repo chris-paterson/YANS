@@ -40,7 +40,6 @@ class UserController extends Controller
     public function purchased($id)
     {   
         $transactionsByUser = Transaction::with('post')->whereUserId($id)->get();
-
         $posts = [];
         foreach ($transactionsByUser as $transaction) {
             $posts[] = $transaction->post;
