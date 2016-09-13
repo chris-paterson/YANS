@@ -34,7 +34,7 @@ class PostController extends Controller
     {   
         $posts = Post::where('isPublished', '1')
             ->orderBy('created_at', 'DESC')
-            ->get();
+            ->paginate(8);
 
         return view('posts.index', ['posts' => $posts]);
     }

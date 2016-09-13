@@ -109,9 +109,11 @@
         $('.publish').tooltip()
 
         // Ensure the user really does want to delete the post.
-        $("#delete-button").click(function(){
-            if (confirm("Are you sure you wish to delete this post forever?")){
-               $('#delete-post').submit();
+        $("#delete-button").click(function(e){
+            e.preventDefault()
+            let result = confirm("Are you sure you wish to delete this post forever?");
+            if (result){
+               $('#delete-post').submit()
             }
        });
     </script>

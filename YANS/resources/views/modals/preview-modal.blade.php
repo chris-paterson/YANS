@@ -11,8 +11,14 @@
                     to be the preview.
                 </p>
                 <div class="post-preview">
-                    <textarea class="form-control" name="preview" rows="16">{{ $post->preview }}</textarea>
+                    {{-- Hidious. Needed to prevent starting whitespace in textarea --}}
+                    <textarea class="form-control" name="preview" rows="16">@if(empty($post->preview)){{ old('preview') }}@else{{ $post->preview }}@endif</textarea>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-toggle="modal" data-target=".preview-modal">
+                    OK
+                </a>
             </div>
         </div>
     </div>

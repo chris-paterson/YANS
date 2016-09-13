@@ -22,3 +22,7 @@ body {
 button, .btn {
     font-family: 'Roboto', serif!important;
 }
+
+.pagination {
+    margin-top: 32px;
+}

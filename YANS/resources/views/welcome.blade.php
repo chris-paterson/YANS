@@ -14,7 +14,7 @@
         <p>or</p>
 
         <p>
-            <a class="btn btn-default btn-lg" href="{{ route('posts.index') }}" role="button">Read post now</a>
+            <a class="btn btn-default btn-lg" href="{{ route('posts.index') }}" role="button">Read posts now</a>
         </p>
     </div>
 @endsection
