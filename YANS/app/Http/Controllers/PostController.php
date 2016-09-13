@@ -162,16 +162,16 @@ class PostController extends Controller
                     "source" => $token,
                     "description" => $post->title . " by " . $post->user->name
                 ));
+
+                $transaction = Transaction::create([
+                    'user_id' => Auth::user()->id,
+                    'post_id' => $post->id,
+                    'price' => $post->price
+                ]);
             } catch(\Stripe\Error\Card $e) {
                 // The card has been declined
                 // TODO: Redirect to error page?
             }
-
-            $transaction = Transaction::create([
-                'user_id' => Auth::user()->id,
-                'post_id' => $post->id,
-                'price' => $post->price
-            ]);
         }
 
         return redirect()->route('posts.show', ['id' => $post->id]);
