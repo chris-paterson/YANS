@@ -35,7 +35,7 @@
                 <div id="article-body">{{ $post->preview }}</div>
             @endif
 
-            <a class="btn btn-default btn-block btn-lg" role="button" href="{{ route('posts.purchase', ['id' => $post->id]) }}">
+            <a class="btn btn-default btn-block btn-lg" role="button" data-toggle="modal" data-target=".preview-modal">
                 Purchase the rest of this post for ${{ $post->price }}
             </a>
         @else
@@ -43,6 +43,7 @@
             <div id="article-body">{{ $post->body }}</div>
         @endif
     </div>
+    @include('modals.payment-modal')
 @endsection
 
 @section('scripts')
