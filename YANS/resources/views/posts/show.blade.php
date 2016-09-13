@@ -18,30 +18,31 @@
             </a>
         </h3>
 
-        
         @if(Auth::user() == $post->user)
-            {{-- User created post --}}
             <a class="btn btn-default pull-right" role="button" href="{{ route('posts.edit', ['id' => $post->id]) }}">
                 <i class="glyphicon glyphicon-edit"></i> 
                 Edit
             </a>
+        @endif
 
+        @if(!Auth::user() && !$post->shouldDisplayFull())
+            <div id="article-body">{{ $post->preview }}</div>
+
+            <a class="btn btn-default btn-block btn-lg" role="button" href="{{ url('/login') }}">
+                You must log in to purchase this post.
+            </a>
+        @elseif($post->shouldDisplayFull())
             <div id="article-body">{{ $post->body }}</div>
-        @elseif(!Auth::user() || !Auth::user()->hasPurchased($post))
-            {{-- User has logged in and has not bought the post --}}
-            @if($post->isFree())
-                <div id="article-body">{{ $post->body }}</div>
-            @else
-                <div id="article-body">{{ $post->preview }}</div>
-            @endif
+        @else
+            {{-- User is logged in but has not bought  --}}
+            <div id="article-body">{{ $post->preview }}</div>
 
             <a class="btn btn-default btn-block btn-lg" role="button" data-toggle="modal" data-target=".preview-modal">
                 Purchase the rest of this post for ${{ $post->price }}
             </a>
-        @else
-            {{-- User has bought the article --}}
-            <div id="article-body">{{ $post->body }}</div>
         @endif
+
+
     </div>
     @include('modals.payment-modal')
 @endsection
