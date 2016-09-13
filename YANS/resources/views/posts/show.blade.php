@@ -27,7 +27,7 @@
             </a>
 
             <div id="article-body">{{ $post->body }}</div>
-        @elseif(Auth::user() && !Auth::user()->hasPurchased($post))
+        @elseif(!Auth::user() || !Auth::user()->hasPurchased($post))
             {{-- User has logged in and has not bought the post --}}
             @if($post->isFree())
                 <div id="article-body">{{ $post->body }}</div>
@@ -36,7 +36,7 @@
             @endif
 
             <a class="btn btn-default btn-block btn-lg" role="button" href="{{ route('posts.purchase', ['id' => $post->id]) }}">
-                Purchase the rest of this article for ${{ $post->price }}
+                Purchase the rest of this post for ${{ $post->price }}
             </a>
         @else
             {{-- User has bought the article --}}
