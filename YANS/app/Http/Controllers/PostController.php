@@ -169,8 +169,11 @@ class PostController extends Controller
                     'price' => $post->price
                 ]);
             } catch(\Stripe\Error\Card $e) {
-                // The card has been declined
-                // TODO: Redirect to error page?
+                // Since it's a decline, \Stripe\Error\Card will be caught
+                $body = $e->getJsonBody();
+                $err  = $body['error'];
+
+                $request->session()->flash('alert', $err['code'] . ' : ' . $err['message']);
             }
         }
 

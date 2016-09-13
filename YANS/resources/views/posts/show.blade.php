@@ -9,6 +9,10 @@
 @endsection
 
 @section('content')
+    @if(Session::has('alert'))
+        <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">{{ Session::get('message') }}</p>
+    @endif
+
     <div class="article center-block">
         <h1 class="text-center">{{ $post->title }}</h1>
         <h3 class="author text-center">
