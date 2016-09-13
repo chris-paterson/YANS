@@ -29,7 +29,7 @@
             <div id="article-body">{{ $post->preview }}</div>
 
             <a class="btn btn-default btn-block btn-lg" role="button" href="{{ url('/login') }}">
-                You must log in to purchase this post.
+                You must log in to purchase this post
             </a>
         @elseif($post->shouldDisplayFull())
             <div id="article-body">{{ $post->body }}</div>
@@ -41,8 +41,6 @@
                 Purchase the rest of this post for ${{ $post->price }}
             </a>
         @endif
-
-
     </div>
     @include('modals.payment-modal')
 @endsection

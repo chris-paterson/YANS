@@ -27,13 +27,12 @@ class Post extends Model
     }
 
     public function isFree() {
-        return $this->price == 0;
+        return $this->price == 0.00;
     }
 
     public function shouldDisplayFull() {
-        if (Auth::user()) {
-            return Auth::user() == $this->user || Auth::user()->hasPurchased($this);
-        }
-        return $this->isFree();
+        return $this->isFree() ||
+            (Auth::user() && Auth::user() == $this->user) ||
+            (Auth::user() && Auth::user()->hasPurchased($this));
     }
 }
