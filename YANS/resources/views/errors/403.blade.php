@@ -9,9 +9,9 @@ Forbidden
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="content">
-        <div class="title">Forbidden</div>
+<div class="error-container">
+    <div class="error-content">
+        <div class="error-title">Forbidden</div>
     </div>
 </div>
 @endsection

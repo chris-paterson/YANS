@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\User;
+
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -13,9 +15,15 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->delete();
 
-        DB::table('users')->insert([
-            'name' => 'Chucka lways',
-            'email' => 'chucka@gmail.com',
+        User::create([
+            'name' => 'Alice McAliceface',
+            'email' => 'alice@gmail.com',
+            'password' => bcrypt('hunter2'),
+        ]);
+
+        User::create([
+            'name' => 'Bob McBobface',
+            'email' => 'bob@gmail.com',
             'password' => bcrypt('hunter2'),
         ]);
     }
