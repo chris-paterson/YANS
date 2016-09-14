@@ -11,13 +11,15 @@
 |
 */
 
-Route::get('/', function () {
+Auth::routes();
+
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::get('/', 'PostController@index');
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'PostController@index');
 
 Route::get('user/{id}/posts', 'UserController@showPosts')->name('user.posts');
 Route::get('user/{id}/purchased', 'UserController@purchased')->name('user.purchased');
