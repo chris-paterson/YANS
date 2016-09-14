@@ -8,27 +8,19 @@ use App\User;
 
 class PostTest extends TestCase
 {
-    public function setUp() {
+    public function setUp() 
+    {
         parent::setUp();
 
         $this->prepareForTests();
-
     }
 
-    public function prepareForTests(){ 
+    public function prepareForTests()
+    { 
         Config::set('database.default', 'mysql_testing');
         Artisan::call('migrate:reset');
         Artisan::call('migrate');
-
-        $this->createUser();
-    }
-
-    public function createUser() {
-        $user = new User;
-        $user->name = 'Chucka lways';
-        $user->email = 'chucka@mail.com';
-        $user->password = Hash::make('hunter2');
-        $user->save();
+        Artisan::call('db:seed');
     }
 
     /**
@@ -48,6 +40,11 @@ class PostTest extends TestCase
             ->check('publish')
             ->type('3.00', 'price')
             ->press('Submit')
-            ->seePageIs('posts.show');
+            ->seePageIs('posts/1');
+    }
+
+    public function userCanEditPost() 
+    {
+
     }
 }
