@@ -12,6 +12,7 @@ Forbidden
 <div class="error-container">
     <div class="error-content">
         <div class="error-title">Forbidden</div>
+        <img src="http://i.imgur.com/kgfV66r.gif" alt="Ah Ah Ahhhhhh">
     </div>
 </div>
 @endsection
