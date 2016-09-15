@@ -40,7 +40,7 @@ class PostsTableSeeder extends Seeder
             'body' => 'Test Body 1',
             'isPublished' => 0,
             'price' => 2.99,
-            'preview' => 'preview'
+            'preview' => 'Preview'
         ]);
 
         Post::create([

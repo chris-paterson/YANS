@@ -23,6 +23,29 @@ class PostTest extends TestCase
         Artisan::call('db:seed');
     }
 
+    public function testPurchasePost() 
+    {
+        $post = Post::where('price', '>', '0.00')->get()->first();
+        $postCreator = $post->user;
+
+        $secondUser = User::whereNotIn('id', [$postCreator->id])->get()->first();
+
+        $this->be($secondUser);
+        $this->visitRoute('posts.show', $post->id)
+            ->see($post->preview);
+
+    }
+
+    public function testNoPreviewWhenCreator() 
+    {
+        $post = Post::wherePrice('>', 0)->get()->first();
+        $postCreator = $post->user;
+
+        $this->be($postCreator);
+        $this->visitRoute('posts.show', $post->id)
+            ->see($post->body);
+    }
+
 
     public function testCorrectUserCanCreatePost()
     {
@@ -73,16 +96,52 @@ class PostTest extends TestCase
         assert($user->posts()->count() == $numberOfPosts - 1);
     }
 
-    public function testIncorrectUserCanEditPost() 
+    public function testIncorrectUserCanNotViewEditPost() 
     {
         $user = App\User::find(1);
         $this->be($user);
         $post = User::find(2)->posts()->first();
 
-        // $response = $this->call('GET', 'posts.edit', [$post->id]);
-        // $this->assertEquals(403, $response->getStatusCode());
-
-        $response = $this->call( 'GET', 'PostController@edit', ['id' => $post->id]);
+        $response = $this->action('GET', 'PostController@edit', ['id' => $post->id]);
         $this->assertEquals(403, $response->getStatusCode());
+    }
+
+    public function testIncorrectUserCanNotEditPost() 
+    {
+        $user = App\User::find(1);
+        $this->be($user);
+        $post = User::find(2)->posts()->first();
+
+        $response = $this->action('PUT', 'PostController@update', ['id' => $post->id]);
+        $this->assertEquals(403, $response->getStatusCode());
+    }
+
+    public function testUnauthorizedUserCanNotViewEditPost() 
+    {
+        $post = User::find(2)->posts()->first();
+
+        $response = $this->action('GET', 'PostController@edit', ['id' => $post->id]);
+        $this->assertEquals(302, $response->getStatusCode());
+
+    }
+
+    public function testUnauthorizedUserCanNotEditPost() 
+    {
+        $post = User::find(2)->posts()->first();
+
+        $response = $this->action('PUT', 'PostController@update', ['id' => $post->id]);
+        $this->assertEquals(302, $response->getStatusCode());
+    }
+
+    public function testPreviewExistsWhenNotBought() 
+    {
+        $post = Post::where('price', '>', '0.00')->get()->first();
+        $postCreator = $post->user;
+
+        $secondUser = User::whereNotIn('id', [$postCreator->id])->get()->first();
+
+        $this->be($secondUser);
+        $this->visitRoute('posts.show', $post->id)
+            ->dontsee($post->body);
     }
 }

@@ -15,7 +15,9 @@ class UpdatePostRequest extends FormRequest
     public function authorize()
     {
         $post = Post::find($this->route('post'));
-        return $this->user()->id == $post->user->id;
+        return $this->user()->id == $post->user->id
+            ? true
+            : abort(403);
     }
 
     /**

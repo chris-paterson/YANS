@@ -38,6 +38,6 @@ class Post extends Model
     public function shouldDisplayFull() {
         return $this->isFree() ||
             (Auth::user() && Auth::user() == $this->user) ||
-            (Auth::user() && Auth::user()->hasPurchased($this));
+            (Auth::user() && Auth::user()->hasPurchased($this->id));
     }
 }

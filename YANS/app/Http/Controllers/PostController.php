@@ -83,7 +83,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Auth::user()->hasPurchased($id)
+            ? Post::withTrashed()->findOrFail($id)
+            : Post::findOrFail($id);
+
         return view('posts.show', ['post' => $post]);
     }
 
@@ -131,8 +134,8 @@ class PostController extends Controller
     public function destroy($id, DestroyPostRequest $request)
     {   
         Post::find($id)->delete();
+        
         return redirect()->route('posts.index');
-
     }
 
     public function purchase($id) 

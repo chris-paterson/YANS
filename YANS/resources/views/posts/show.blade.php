@@ -41,7 +41,7 @@
             {{-- User is logged in but has not bought  --}}
             <div id="article-body">{{ $post->preview }}</div>
 
-            <a class="btn btn-default btn-block btn-lg" role="button" data-toggle="modal" data-target=".preview-modal">
+            <a class="btn btn-default btn-block btn-lg" id="purchase-button" role="button" data-toggle="modal" data-target=".preview-modal">
                 Purchase the rest of this post for ${{ $post->price }}
             </a>
         @endif
