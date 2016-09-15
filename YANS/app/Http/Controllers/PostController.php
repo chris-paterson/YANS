@@ -171,12 +171,14 @@ class PostController extends Controller
                     'post_id' => $post->id,
                     'price' => $post->price
                 ]);
+
+                $request->session()->flash('success', "Thank you for purchasing " . $post->title . ' by ' . $post->user->name);
             } catch(\Stripe\Error\Card $e) {
                 // Since it's a decline, \Stripe\Error\Card will be caught
                 $body = $e->getJsonBody();
                 $err  = $body['error'];
 
-                $request->session()->flash('alert', $err['code'] . ' : ' . $err['message']);
+                $request->session()->flash('danger', $err['message']);
             }
         }
 
