@@ -9,7 +9,7 @@
 
     <span class="card-footer">
         <a class="btn btn-default" role="button" href="{{ route('posts.show', ['id' => $post->id]) }}">
-            @if($post->shouldDisplayFull())
+            @if(Auth::user() && $post->shouldDisplayFull())
                 Read Post
             @else
                 Preview Post

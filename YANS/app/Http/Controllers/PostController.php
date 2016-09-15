@@ -83,7 +83,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Auth::user()->hasPurchased($id)
+        $post = Auth::user() && Auth::user()->hasPurchased($id)
             ? Post::withTrashed()->findOrFail($id)
             : Post::findOrFail($id);
 

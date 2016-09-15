@@ -58,7 +58,7 @@
                     post. It should act as a taster of your post.
                 </p>
 
-                <a href="#" class="btn btn-default" data-toggle="modal" data-target=".preview-modal">
+                <a href="#" class="btn btn-default" id="preview-button" data-toggle="modal" data-target=".preview-modal">
                     Add Preview
                 </a>
                 @include('modals.preview-modal', $post)
@@ -115,6 +115,6 @@
             if (result){
                $('#delete-post').submit()
             }
-       });
+        });
     </script>
 @endsection
