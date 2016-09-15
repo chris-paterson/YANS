@@ -111,7 +111,7 @@
         // Ensure the user really does want to delete the post.
         $("#delete-button").click(function(e){
             e.preventDefault()
-            let result = confirm("Are you sure you wish to delete this post forever?");
+            let result = confirm("Are you sure you wish to delete this post?");
             if (result){
                $('#delete-post').submit()
             }
