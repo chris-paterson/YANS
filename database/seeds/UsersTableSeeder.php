@@ -17,13 +17,13 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'name' => 'Alice McAliceface',
-            'email' => 'alice@gmail.com',
+            'email' => 'alice@testmail.wow',
             'password' => bcrypt('hunter2'),
         ]);
 
         User::create([
             'name' => 'Bob McBobface',
-            'email' => 'bob@gmail.com',
+            'email' => 'bob@testmail.wow',
             'password' => bcrypt('hunter2'),
         ]);
     }
